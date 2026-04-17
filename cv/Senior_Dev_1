@@ -1,0 +1,39 @@
+Alice Johnson
+alice.johnson@email.com | +44 7700 900123
+42 Baker Street, London, NW1 6XE
+LinkedIn: https://linkedin.com/in/alicejohnson
+Photo: profile headshot attached
+
+PROFESSIONAL SUMMARY
+Senior Software Engineer with 7 years of experience building scalable backend systems in Python. Passionate about clean code, test-driven development, and mentoring engineering teams.
+
+SKILLS
+- Python, Django, FastAPI, Flask
+- PostgreSQL, Redis, MongoDB, RabbitMQ
+- Docker, Kubernetes, AWS (EC2, S3, Lambda)
+- CI/CD (GitHub Actions, Jenkins), Git
+- REST API Design, Microservices Architecture
+- Unit Testing, TDD, Pytest
+- Agile/Scrum, JIRA
+
+EXPERIENCE
+Senior Python Developer | CloudScale Ltd | 2020 - Present
+- Designed and built 12 microservices handling 50M+ requests/day
+- Reduced API response time by 40% through Redis caching and query optimization
+- Led migration from monolith to microservices architecture
+- Mentored 5 junior developers and conducted code reviews
+- Implemented CI/CD pipeline reducing deployment time by 60%
+
+Python Developer | DataFlow Inc | 2017 - 2020
+- Built RESTful APIs using Django REST Framework serving 10M users
+- Implemented real-time data pipeline with Kafka and PostgreSQL
+- Developed automated testing suite achieving 90% code coverage
+- Collaborated with data science team on ML model integration
+
+EDUCATION
+BSc Computer Science - University of Edinburgh (2017)
+First Class Honours
+
+CERTIFICATIONS
+- AWS Solutions Architect Associate
+- Kubernetes Certified Developer 

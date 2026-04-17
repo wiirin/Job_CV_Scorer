@@ -1,0 +1,29 @@
+Frank Weber
+frank.weber@datascience.io | +49 176 5551234
+Potsdamer Platz 5, Berlin
+
+ABOUT
+Machine Learning Engineer with 2 years of experience focused on computer vision and image processing. Transitioning towards NLP and text analytics.
+
+SKILLS
+- Python, C++
+- Computer Vision: OpenCV, YOLO, ResNet
+- Deep Learning: PyTorch, TensorFlow
+- Basic NLP: NLTK, basic spaCy usage
+- Data: Pandas, NumPy, Matplotlib
+- Cloud: AWS EC2, S3
+
+EXPERIENCE
+ML Engineer | VisionAI GmbH | 2022 - Present
+- Built object detection pipeline for manufacturing quality control
+- Trained custom YOLO models achieving 96% mAP on production data
+- Deployed models using TensorRT for 10x inference speedup
+- Starting to explore NLP tasks with basic text classification
+
+Research Assistant | TU Berlin | 2021 - 2022
+- Worked on image segmentation research project
+- Published paper on efficient convolutional architectures
+
+EDUCATION
+MSc Machine Learning - TU Berlin (2021)
+BSc Electrical Engineering - RWTH Aachen (2019)

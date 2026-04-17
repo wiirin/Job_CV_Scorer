@@ -1,0 +1,35 @@
+Elena Petrova
+elena.petrova@mail.ru | +49 151 9876543
+Alexanderplatz 10, Berlin
+
+PROFESSIONAL PROFILE
+Full-stack developer with 6 years of experience, strong in both Python backend and React frontend. Experience with data engineering and basic ML integration.
+
+TECHNICAL SKILLS
+- Backend: Python, Django, FastAPI, Node.js
+- Frontend: React, TypeScript, Vue.js
+- Databases: PostgreSQL, MongoDB, Redis
+- DevOps: Docker, Kubernetes, Terraform, AWS
+- Data: Pandas, Airflow, dbt, Snowflake
+- Testing: Pytest, Jest, Selenium
+
+EXPERIENCE
+Lead Developer | FinTech Solutions AG | 2021 - Present
+- Architected microservices platform processing 2M financial transactions/day
+- Built React dashboard for real-time analytics with 500+ daily active users
+- Implemented CI/CD with GitHub Actions reducing release cycle from 2 weeks to 2 days
+- Led team of 8 developers across 3 time zones
+
+Full-Stack Developer | E-Commerce Hub | 2018 - 2021
+- Developed Django backend with REST API serving mobile and web clients
+- Built data pipeline with Airflow processing 1TB+ daily
+- Implemented search functionality using Elasticsearch
+- Optimized PostgreSQL queries reducing load time by 55%
+
+EDUCATION
+MSc Computer Science - Humboldt University Berlin (2018)
+BSc Mathematics - Moscow State University (2016)
+
+CERTIFICATIONS
+- AWS Solutions Architect Professional
+- Terraform Associate

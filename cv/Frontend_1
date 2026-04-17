@@ -1,0 +1,38 @@
+Charlotte Chen
+charlotte.chen@outlook.com | +31 6 12345678
+Keizersgracht 456, Amsterdam
+Portfolio: https://charlottechen.dev
+GitHub: @charlotte-dev
+
+PROFESSIONAL SUMMARY
+Creative Frontend Developer with 4 years of experience building modern web applications with React. Passionate about UI/UX, accessibility, and creating delightful user experiences.
+
+SKILLS
+- React, TypeScript, JavaScript (ES6+)
+- Next.js, Remix, Gatsby
+- HTML5, CSS3, Tailwind CSS, Styled Components
+- State Management: Redux, Zustand, React Query
+- Testing: Jest, React Testing Library, Cypress
+- Build Tools: Vite, Webpack, Turbopack
+- Design: Figma, Storybook, Design Systems
+- GraphQL, REST APIs, WebSockets
+
+EXPERIENCE
+Senior Frontend Developer | PixelPerfect BV | 2022 - Present
+- Built component library used across 8 products (120+ components)
+- Improved Core Web Vitals scores by 45% through performance optimization
+- Implemented accessibility (WCAG 2.1 AA) across all products
+- Led migration from Create React App to Next.js, reducing bundle size by 35%
+
+Frontend Developer | WebCraft Agency | 2020 - 2022
+- Developed 20+ responsive web applications for enterprise clients
+- Built real-time dashboard with React and WebSocket integration
+- Created reusable design system with Storybook documentation
+- Achieved 95% test coverage using Jest and React Testing Library
+
+EDUCATION
+BSc Interactive Media - University of Amsterdam (2020)
+
+ACHIEVEMENTS
+- Speaker at React Amsterdam Conference 2023
+- Open-source contributor t

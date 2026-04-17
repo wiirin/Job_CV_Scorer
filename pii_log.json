@@ -1,0 +1,728 @@
+[
+  {
+    "candidate_id": "cv-001",
+    "timestamp": "2026-04-17T09:43:25.673027",
+    "entity_count": 12,
+    "categories": [
+      "ADDRESS",
+      "EMAIL",
+      "LOCATION",
+      "NAME",
+      "PHONE"
+    ],
+    "original_length": 1499,
+    "anonymized_length": 1473,
+    "entities": [
+      {
+        "type": "NAME",
+        "value": "Bob Martinez",
+        "replaced_with": "[REDACTED]",
+        "start": 0,
+        "end": 12,
+        "confidence": 0.85,
+        "timestamp": "2026-04-17T09:43:25.672661"
+      },
+      {
+        "type": "EMAIL",
+        "value": "bob.martinez@gmail.com",
+        "replaced_with": "[REDACTED]",
+        "start": 13,
+        "end": 35,
+        "confidence": 1.0,
+        "timestamp": "2026-04-17T09:43:25.672715"
+      },
+      {
+        "type": "PHONE",
+        "value": "+49 170 1234567",
+        "replaced_with": "[REDACTED]",
+        "start": 38,
+        "end": 53,
+        "confidence": 1.0,
+        "timestamp": "2026-04-17T09:43:25.672785"
+      },
+      {
+        "type": "LOCATION",
+        "value": "Friedrichstrasse 123",
+        "replaced_with": "[REDACTED]",
+        "start": 54,
+        "end": 74,
+        "confidence": 0.85,
+        "timestamp": "2026-04-17T09:43:25.672672"
+      },
+      {
+        "type": "LOCATION",
+        "value": "Berlin",
+        "replaced_with": "[REDACTED]",
+        "start": 76,
+        "end": 82,
+        "confidence": 0.85,
+        "timestamp": "2026-04-17T09:43:25.672676"
+      },
+      {
+        "type": "ADDRESS",
+        "value": "Natural Language Processing",
+        "replaced_with": "[REDACTED]",
+        "start": 124,
+        "end": 151,
+        "confidence": 0.85,
+        "timestamp": "2026-04-17T09:43:25.672681"
+      },
+      {
+        "type": "NAME",
+        "value": "Keras\n- Models: BERT",
+        "replaced_with": "[REDACTED]",
+        "start": 410,
+        "end": 430,
+        "confidence": 0.85,
+        "timestamp": "2026-04-17T09:43:25.672686"
+      },
+      {
+        "type": "NAME",
+        "value": "Pandas",
+        "replaced_with": "[REDACTED]",
+        "start": 471,
+        "end": 477,
+        "confidence": 0.85,
+        "timestamp": "2026-04-17T09:43:25.672690"
+      },
+      {
+        "type": "LOCATION",
+        "value": "NumPy",
+        "replaced_with": "[REDACTED]",
+        "start": 479,
+        "end": 484,
+        "confidence": 0.85,
+        "timestamp": "2026-04-17T09:43:25.672693"
+      },
+      {
+        "type": "NAME",
+        "value": "Docker",
+        "replaced_with": "[REDACTED]",
+        "start": 548,
+        "end": 554,
+        "confidence": 0.85,
+        "timestamp": "2026-04-17T09:43:25.672696"
+      },
+      {
+        "type": "LOCATION",
+        "value": "F1",
+        "replaced_with": "[REDACTED]",
+        "start": 714,
+        "end": 716,
+        "confidence": 0.85,
+        "timestamp": "2026-04-17T09:43:25.672699"
+      },
+      {
+        "type": "NAME",
+        "value": "GPT-4",
+        "replaced_with": "[REDACTED]",
+        "start": 908,
+        "end": 913,
+        "confidence": 0.85,
+        "timestamp": "2026-04-17T09:43:25.672702"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cv-002",
+    "timestamp": "2026-04-17T09:43:25.714708",
+    "entity_count": 12,
+    "categories": [
+      "EMAIL",
+      "LOCATION",
+      "NAME",
+      "PHONE"
+    ],
+    "original_length": 1361,
+    "anonymized_length": 1350,
+    "entities": [
+      {
+        "type": "NAME",
+        "value": "Elena Petrova",
+        "replaced_with": "[REDACTED]",
+        "start": 0,
+        "end": 13,
+        "confidence": 0.85,
+        "timestamp": "2026-04-17T09:43:25.714413"
+      },
+      {
+        "type": "EMAIL",
+        "value": "elena.petrova@mail.ru",
+        "replaced_with": "[REDACTED]",
+        "start": 14,
+        "end": 35,
+        "confidence": 1.0,
+        "timestamp": "2026-04-17T09:43:25.714457"
+      },
+      {
+        "type": "PHONE",
+        "value": "+49 151 9876543",
+        "replaced_with": "[REDACTED]",
+        "start": 38,
+        "end": 53,
+        "confidence": 1.0,
+        "timestamp": "2026-04-17T09:43:25.714485"
+      },
+      {
+        "type": "LOCATION",
+        "value": "Berlin",
+        "replaced_with": "[REDACTED]",
+        "start": 73,
+        "end": 79,
+        "confidence": 0.85,
+        "timestamp": "2026-04-17T09:43:25.714420"
+      },
+      {
+        "type": "LOCATION",
+        "value": "React",
+        "replaced_with": "[REDACTED]",
+        "start": 185,
+        "end": 190,
+        "confidence": 0.85,
+        "timestamp": "2026-04-17T09:43:25.714424"
+      },
+      {
+        "type": "NAME",
+        "value": "Django",
+        "replaced_with": "[REDACTED]",
+        "start": 297,
+        "end": 303,
+        "confidence": 0.85,
+        "timestamp": "2026-04-17T09:43:25.714427"
+      },
+      {
+        "type": "LOCATION",
+        "value": "Node.js",
+        "replaced_with": "[REDACTED]",
+        "start": 314,
+        "end": 321,
+        "confidence": 0.85,
+        "timestamp": "2026-04-17T09:43:25.714430"
+      },
+      {
+        "type": "NAME",
+        "value": "Redis",
+        "replaced_with": "[REDACTED]",
+        "start": 394,
+        "end": 399,
+        "confidence": 0.85,
+        "timestamp": "2026-04-17T09:43:25.714433"
+      },
+      {
+        "type": "NAME",
+        "value": "Docker",
+        "replaced_with": "[REDACTED]",
+        "start": 410,
+        "end": 416,
+        "confidence": 0.85,
+        "timestamp": "2026-04-17T09:43:25.714435"
+      },
+      {
+        "type": "NAME",
+        "value": "Airflow",
+        "replaced_with": "[REDACTED]",
+        "start": 461,
+        "end": 468,
+        "confidence": 0.85,
+        "timestamp": "2026-04-17T09:43:25.714438"
+      },
+      {
+        "type": "NAME",
+        "value": "Snowflake\n- Testing: Pytest",
+        "replaced_with": "[REDACTED]",
+        "start": 475,
+        "end": 502,
+        "confidence": 0.85,
+        "timestamp": "2026-04-17T09:43:25.714442"
+      },
+      {
+        "type": "NAME",
+        "value": "Elasticsearch",
+        "replaced_with": "[REDACTED]",
+        "start": 1097,
+        "end": 1110,
+        "confidence": 0.85,
+        "timestamp": "2026-04-17T09:43:25.714445"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cv-003",
+    "timestamp": "2026-04-17T09:43:25.757509",
+    "entity_count": 11,
+    "categories": [
+      "ADDRESS",
+      "LOCATION",
+      "NAME",
+      "PHONE",
+      "SOCIAL"
+    ],
+    "original_length": 1500,
+    "anonymized_length": 1281,
+    "entities": [
+      {
+        "type": "NAME",
+        "value": "Charlotte Chen\ncharlotte.chen@outlook.com",
+        "replaced_with": "[REDACTED]",
+        "start": 0,
+        "end": 41,
+        "confidence": 0.85,
+        "timestamp": "2026-04-17T09:43:25.757182"
+      },
+      {
+        "type": "PHONE",
+        "value": "+31 6 12345678",
+        "replaced_with": "[REDACTED]",
+        "start": 44,
+        "end": 58,
+        "confidence": 1.0,
+        "timestamp": "2026-04-17T09:43:25.757257"
+      },
+      {
+        "type": "LOCATION",
+        "value": "Amsterdam",
+        "replaced_with": "[REDACTED]",
+        "start": 78,
+        "end": 87,
+        "confidence": 0.85,
+        "timestamp": "2026-04-17T09:43:25.757190"
+      },
+      {
+        "type": "SOCIAL",
+        "value": "@charlotte",
+        "replaced_with": "[REDACTED]",
+        "start": 133,
+        "end": 143,
+        "confidence": 1.0,
+        "timestamp": "2026-04-17T09:43:25.757369"
+      },
+      {
+        "type": "ADDRESS",
+        "value": "Creative Frontend Developer with 4 years of experience building modern web applications with React. Passionate about UI/UX, accessibility, and creating delightful user experiences.",
+        "replaced_with": "[REDACTED]",
+        "start": 170,
+        "end": 350,
+        "confidence": 0.7,
+        "timestamp": "2026-04-17T09:43:25.757416"
+      },
+      {
+        "type": "NAME",
+        "value": "Gatsby\n- HTML5",
+        "replaced_with": "[REDACTED]",
+        "start": 416,
+        "end": 430,
+        "confidence": 0.85,
+        "timestamp": "2026-04-17T09:43:25.757198"
+      },
+      {
+        "type": "LOCATION",
+        "value": "Zustand",
+        "replaced_with": "[REDACTED]",
+        "start": 497,
+        "end": 504,
+        "confidence": 0.85,
+        "timestamp": "2026-04-17T09:43:25.757201"
+      },
+      {
+        "type": "LOCATION",
+        "value": "Storybook",
+        "replaced_with": "[REDACTED]",
+        "start": 623,
+        "end": 632,
+        "confidence": 0.85,
+        "timestamp": "2026-04-17T09:43:25.757204"
+      },
+      {
+        "type": "LOCATION",
+        "value": "React",
+        "replaced_with": "[REDACTED]",
+        "start": 1188,
+        "end": 1193,
+        "confidence": 0.85,
+        "timestamp": "2026-04-17T09:43:25.757208"
+      },
+      {
+        "type": "ADDRESS",
+        "value": "Storybook",
+        "replaced_with": "[REDACTED]",
+        "start": 1258,
+        "end": 1267,
+        "confidence": 0.85,
+        "timestamp": "2026-04-17T09:43:25.757211"
+      },
+      {
+        "type": "ADDRESS",
+        "value": "React Amsterdam Conference 2023",
+        "replaced_with": "[REDACTED]",
+        "start": 1441,
+        "end": 1472,
+        "confidence": 0.85,
+        "timestamp": "2026-04-17T09:43:25.757216"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cv-004",
+    "timestamp": "2026-04-17T09:43:25.779032",
+    "entity_count": 5,
+    "categories": [
+      "EMAIL",
+      "LOCATION",
+      "NAME",
+      "PHONE"
+    ],
+    "original_length": 650,
+    "anonymized_length": 636,
+    "entities": [
+      {
+        "type": "NAME",
+        "value": "David Kim",
+        "replaced_with": "[REDACTED]",
+        "start": 0,
+        "end": 9,
+        "confidence": 0.85,
+        "timestamp": "2026-04-17T09:43:25.778868"
+      },
+      {
+        "type": "EMAIL",
+        "value": "david.kim@techmail.com",
+        "replaced_with": "[REDACTED]",
+        "start": 10,
+        "end": 32,
+        "confidence": 1.0,
+        "timestamp": "2026-04-17T09:43:25.778887"
+      },
+      {
+        "type": "PHONE",
+        "value": "+44 7911 123456\n15",
+        "replaced_with": "[REDACTED]",
+        "start": 35,
+        "end": 53,
+        "confidence": 1.0,
+        "timestamp": "2026-04-17T09:43:25.778907"
+      },
+      {
+        "type": "NAME",
+        "value": "Manchester",
+        "replaced_with": "[REDACTED]",
+        "start": 67,
+        "end": 77,
+        "confidence": 0.85,
+        "timestamp": "2026-04-17T09:43:25.778874"
+      },
+      {
+        "type": "LOCATION",
+        "value": "Flask",
+        "replaced_with": "[REDACTED]",
+        "start": 424,
+        "end": 429,
+        "confidence": 0.85,
+        "timestamp": "2026-04-17T09:43:25.778878"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cv-005",
+    "timestamp": "2026-04-17T09:43:25.808891",
+    "entity_count": 12,
+    "categories": [
+      "EMAIL",
+      "LOCATION",
+      "NAME",
+      "PHONE",
+      "PHOTO"
+    ],
+    "original_length": 993,
+    "anonymized_length": 973,
+    "entities": [
+      {
+        "type": "NAME",
+        "value": "Frank Weber",
+        "replaced_with": "[REDACTED]",
+        "start": 0,
+        "end": 11,
+        "confidence": 0.85,
+        "timestamp": "2026-04-17T09:43:25.808635"
+      },
+      {
+        "type": "EMAIL",
+        "value": "frank.weber@datascience.io",
+        "replaced_with": "[REDACTED]",
+        "start": 12,
+        "end": 38,
+        "confidence": 1.0,
+        "timestamp": "2026-04-17T09:43:25.808679"
+      },
+      {
+        "type": "PHONE",
+        "value": "+49 176 5551234",
+        "replaced_with": "[REDACTED]",
+        "start": 41,
+        "end": 56,
+        "confidence": 1.0,
+        "timestamp": "2026-04-17T09:43:25.808703"
+      },
+      {
+        "type": "LOCATION",
+        "value": "Berlin",
+        "replaced_with": "[REDACTED]",
+        "start": 76,
+        "end": 82,
+        "confidence": 0.85,
+        "timestamp": "2026-04-17T09:43:25.808643"
+      },
+      {
+        "type": "PHOTO",
+        "value": "image",
+        "replaced_with": "[REDACTED]",
+        "start": 174,
+        "end": 179,
+        "confidence": 0.75,
+        "timestamp": "2026-04-17T09:43:25.808858"
+      },
+      {
+        "type": "NAME",
+        "value": "C++\n- Computer",
+        "replaced_with": "[REDACTED]",
+        "start": 256,
+        "end": 270,
+        "confidence": 0.85,
+        "timestamp": "2026-04-17T09:43:25.808648"
+      },
+      {
+        "type": "NAME",
+        "value": "Pandas",
+        "replaced_with": "[REDACTED]",
+        "start": 382,
+        "end": 388,
+        "confidence": 0.85,
+        "timestamp": "2026-04-17T09:43:25.808651"
+      },
+      {
+        "type": "LOCATION",
+        "value": "NumPy",
+        "replaced_with": "[REDACTED]",
+        "start": 390,
+        "end": 395,
+        "confidence": 0.85,
+        "timestamp": "2026-04-17T09:43:25.808654"
+      },
+      {
+        "type": "NAME",
+        "value": "Matplotlib",
+        "replaced_with": "[REDACTED]",
+        "start": 397,
+        "end": 407,
+        "confidence": 0.85,
+        "timestamp": "2026-04-17T09:43:25.808657"
+      },
+      {
+        "type": "LOCATION",
+        "value": "TU Berlin",
+        "replaced_with": "[REDACTED]",
+        "start": 764,
+        "end": 773,
+        "confidence": 0.85,
+        "timestamp": "2026-04-17T09:43:25.808660"
+      },
+      {
+        "type": "PHOTO",
+        "value": "image",
+        "replaced_with": "[REDACTED]",
+        "start": 800,
+        "end": 805,
+        "confidence": 0.75,
+        "timestamp": "2026-04-17T09:43:25.808862"
+      },
+      {
+        "type": "NAME",
+        "value": "Machine Learning - TU Berlin",
+        "replaced_with": "[REDACTED]",
+        "start": 910,
+        "end": 938,
+        "confidence": 0.85,
+        "timestamp": "2026-04-17T09:43:25.808664"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cv-006",
+    "timestamp": "2026-04-17T09:43:25.850615",
+    "entity_count": 18,
+    "categories": [
+      "ADDRESS",
+      "EMAIL",
+      "LOCATION",
+      "NAME",
+      "PHONE",
+      "PHOTO",
+      "URL"
+    ],
+    "original_length": 1499,
+    "anonymized_length": 1235,
+    "entities": [
+      {
+        "type": "NAME",
+        "value": "Alice Johnson",
+        "replaced_with": "[REDACTED]",
+        "start": 0,
+        "end": 13,
+        "confidence": 0.85,
+        "timestamp": "2026-04-17T09:43:25.850298"
+      },
+      {
+        "type": "EMAIL",
+        "value": "alice.johnson@email.com",
+        "replaced_with": "[REDACTED]",
+        "start": 14,
+        "end": 37,
+        "confidence": 1.0,
+        "timestamp": "2026-04-17T09:43:25.850341"
+      },
+      {
+        "type": "PHONE",
+        "value": "+44 7700 900123\n42",
+        "replaced_with": "[REDACTED]",
+        "start": 40,
+        "end": 58,
+        "confidence": 1.0,
+        "timestamp": "2026-04-17T09:43:25.850368"
+      },
+      {
+        "type": "ADDRESS",
+        "value": "Baker Street",
+        "replaced_with": "[REDACTED]",
+        "start": 59,
+        "end": 71,
+        "confidence": 0.85,
+        "timestamp": "2026-04-17T09:43:25.850304"
+      },
+      {
+        "type": "LOCATION",
+        "value": "London",
+        "replaced_with": "[REDACTED]",
+        "start": 73,
+        "end": 79,
+        "confidence": 0.85,
+        "timestamp": "2026-04-17T09:43:25.850307"
+      },
+      {
+        "type": "URL",
+        "value": "https://linkedin.com/in/alicejohnson",
+        "replaced_with": "[REDACTED]",
+        "start": 99,
+        "end": 135,
+        "confidence": 1.0,
+        "timestamp": "2026-04-17T09:43:25.850471"
+      },
+      {
+        "type": "PHOTO",
+        "value": "Photo",
+        "replaced_with": "[REDACTED]",
+        "start": 136,
+        "end": 141,
+        "confidence": 0.75,
+        "timestamp": "2026-04-17T09:43:25.850577"
+      },
+      {
+        "type": "PHOTO",
+        "value": "headshot",
+        "replaced_with": "[REDACTED]",
+        "start": 151,
+        "end": 159,
+        "confidence": 0.75,
+        "timestamp": "2026-04-17T09:43:25.850581"
+      },
+      {
+        "type": "ADDRESS",
+        "value": "Senior Software Engineer with 7 years of experience building scalable backend systems in Python. Passionate about clean code, test-driven development, and mentoring engineering teams.",
+        "replaced_with": "[REDACTED]",
+        "start": 191,
+        "end": 374,
+        "confidence": 0.7,
+        "timestamp": "2026-04-17T09:43:25.850518"
+      },
+      {
+        "type": "NAME",
+        "value": "Django",
+        "replaced_with": "[REDACTED]",
+        "start": 393,
+        "end": 399,
+        "confidence": 0.85,
+        "timestamp": "2026-04-17T09:43:25.850312"
+      },
+      {
+        "type": "LOCATION",
+        "value": "Flask",
+        "replaced_with": "[REDACTED]",
+        "start": 410,
+        "end": 415,
+        "confidence": 0.85,
+        "timestamp": "2026-04-17T09:43:25.850315"
+      },
+      {
+        "type": "LOCATION",
+        "value": "Lambda",
+        "replaced_with": "[REDACTED]",
+        "start": 491,
+        "end": 497,
+        "confidence": 0.85,
+        "timestamp": "2026-04-17T09:43:25.850318"
+      },
+      {
+        "type": "NAME",
+        "value": "Jenkins",
+        "replaced_with": "[REDACTED]",
+        "start": 524,
+        "end": 531,
+        "confidence": 0.85,
+        "timestamp": "2026-04-17T09:43:25.850320"
+      },
+      {
+        "type": "NAME",
+        "value": "Git\n- REST API Design",
+        "replaced_with": "[REDACTED]",
+        "start": 534,
+        "end": 555,
+        "confidence": 0.85,
+        "timestamp": "2026-04-17T09:43:25.850324"
+      },
+      {
+        "type": "NAME",
+        "value": "Django",
+        "replaced_with": "[REDACTED]",
+        "start": 1100,
+        "end": 1106,
+        "confidence": 0.85,
+        "timestamp": "2026-04-17T09:43:25.850328"
+      },
+      {
+        "type": "NAME",
+        "value": "Kafka",
+        "replaced_with": "[REDACTED]",
+        "start": 1183,
+        "end": 1188,
+        "confidence": 0.85,
+        "timestamp": "2026-04-17T09:43:25.850330"
+      },
+      {
+        "type": "LOCATION",
+        "value": "PostgreSQL",
+        "replaced_with": "[REDACTED]",
+        "start": 1193,
+        "end": 1203,
+        "confidence": 0.85,
+        "timestamp": "2026-04-17T09:43:25.850333"
+      },
+      {
+        "type": "ADDRESS",
+        "value": "- Developed automated testing suite achieving 90% code coverage",
+        "replaced_with": "[REDACTED]",
+        "start": 1204,
+        "end": 1267,
+        "confidence": 0.7,
+        "timestamp": "2026-04-17T09:43:25.850560"
+      }
+    ]
+  }
+]

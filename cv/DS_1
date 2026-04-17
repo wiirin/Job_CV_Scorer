@@ -1,0 +1,36 @@
+Bob Martinez
+bob.martinez@gmail.com | +49 170 1234567
+Friedrichstrasse 123, Berlin
+
+ABOUT ME
+Data Scientist specializing in Natural Language Processing with 4 years of experience. Published researcher with expertise in transformer models and text analytics for enterprise solutions.
+
+TECHNICAL SKILLS
+- Python, R, SQL
+- NLP: spaCy, Hugging Face Transformers, NLTK, Gensim
+- Deep Learning: PyTorch, TensorFlow, Keras
+- Models: BERT, GPT, T5, Sentence-Transformers
+- Data: Pandas, NumPy, Scikit-learn, Apache Spark
+- MLOps: MLflow, Weights & Biases, Docker
+- Cloud: AWS SageMaker, GCP Vertex AI
+
+EXPERIENCE
+Senior Data Scientist | LangTech GmbH | 2021 - Present
+- Built named entity recognition system achieving 94% F1 score
+- Fine-tuned BERT models for multi-language sentiment analysis (12 languages)
+- Developed document classification pipeline processing 100K+ docs/day
+- Led LLM integration project using GPT-4 for automated report generation
+- Reduced model inference latency by 70% through ONNX optimization
+
+Data Scientist | AnalyticsPro | 2020 - 2021
+- Implemented text summarization system using T5 transformer
+- Built semantic search engine with sentence embeddings
+- Designed A/B testing framework for ML model evaluation
+- Created data pipeline processing 5TB of text data monthly
+
+EDUCATION
+MSc Computational Linguistics - Technical University of Berlin (2020)
+BSc Computer Science - University of Barcelona (2018)
+
+PUBLICATIONS
+- 'Cross-lingual NER with Transformer Architectures' - ACL 

@@ -1,0 +1,13 @@
+[project]
+name = "cv-checker"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "anthropic[vertex]>=0.96.0",
+    "ipykernel>=7.2.0",
+    "pandas>=3.0.2",
+    "spacy>=3.8.14",
+    "streamlit>=1.56.0",
+]

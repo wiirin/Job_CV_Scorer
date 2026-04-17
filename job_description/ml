@@ -1,0 +1,93 @@
+Senior ML Engineer, Risk Modeling 
+Role highlights:
+
+Senior ML Engineer, Risk Modeling
+Location: Espoo, Finland
+Department: Solutions
+Reports to: Director of Product Engineering
+Employment type: Permanent
+Workplace model: Hybrid
+Employment is subject to applicable security screening (incl. SUPO, where required)
+
+Why this role matters:
+
+ICEYE has a unique asset: satellite-derived observations of real-world events, ground-truthed at the property level across geographies. We are turning this asset into production risk models that are calibrated, validated, and built to withstand rigorous external scrutiny.
+
+We are looking for a Senior ML Engineer to own the training and calibration infrastructure for these models. You will work alongside other scientists and analytics leads who define the modelling problem; your responsibility is to ensure it trains correctly, efficiently, and reproducibly, with access to the compute resources required by the task. Producing well-calibrated outputs is central to this role: scores that are statistically meaningful and externally defensible, not just good at ranking.
+
+Who We Are
+
+ICEYE delivers space-based intelligence, surveillance, and reconnaissance (ISR) capabilities to governments and allied nations. This includes sovereign and turnkey ISR missions leveraging ICEYE's world-leading synthetic aperture radar (SAR) satellite technology, as well as access to data from the world's largest SAR satellite constellation. These capabilities enable partners to detect and respond to critical changes anywhere on Earth with unprecedented speed and accuracy - day or night and in any weather, supported by ultra high-resolution imagery and high-frequency revisits.
+
+As a trusted partner for defense, intelligence, security, and maritime domain awareness, ICEYE's near real-time data creates a tactical advantage for mission-critical operations. Designed for dual use, the platform also serves civil protection and commercial users for natural-catastrophe intelligence, insurance, maritime monitoring (including oil-spill detection), and finance, contributing to global security and community resilience.
+
+ICEYE is headquartered in Finland and operates globally across Europe, North America, the Middle East, and Asia-Pacific. We have more than 900 employees, united by a shared vision: improving life on Earth by becoming the global source of truth in Earth Observation.
+
+Responsibilities
+
+Training Infrastructure: Set up and maintain a reproducible ML environment across the compute spectrum, local development, GPU cloud (AWS), and HPC; ensure training is fast, consistent, and repeatable
+Model Training: Scale an existing training pipeline from research prototype to production, large labelled datasets, scoring across millions of properties
+Calibration: Implement and validate probability calibration, ensuring model outputs are statistically meaningful and externally defensible, not just good at ranking
+Experimentation: Build a rigorous experimentation framework with reproducible runs and clear data, feature, and model provenance; design validation strategies appropriate for geospatial data, and drive systematic hyperparameter optimisation and model selection
+ML/ModelOps: Manage experiment tracking, model versioning, and artifact lineage; maintain clean, reliable training and scoring pipelines for reproducible deployment
+Documentation: Produce model documentation that satisfies external technical review
+Communication: Ability to communicate results clearly with non-technical stakeholders 
+Collaboration: Work closely with Data Engineers to build reliable, scalable training and scoring pipelines, and with Data Scientists to ensure features, labels, evaluation metrics, and calibration approaches are scientifically sound and production-ready
+
+Requirements
+
+Must haves:
+
+Education: Master's degree or higher in computer science, machine learning, statistics, applied mathematics, or related quantitative field
+Experience: 5+ years of professional industry experience training ML models in production settings, with significant experience optimizing model performance for large-scale datasets, including training and inference (e.g., parallelization, distributed execution, or GPU acceleration)
+Calibration: Hands-on experience with probability calibration, you have debugged calibration curves and know when they break and why
+Evaluation: Strong grasp of evaluation for imbalanced classification: beyond accuracy, into calibration metrics and ranking quality
+Optimisation: Systematic hyperparameter optimisation at scale; experience with automated search frameworks
+ML/ModelOps: Experiment tracking, model registry, and artifact management in practice, not just in theory, including reproducibility, versioning, and reliable model deployment workflows
+Foundations: Strong Python, pandas / NumPy / scikit-learn; cloud compute experience (AWS) with GPU instances and distributed training or inference workloads
+Modern Tooling: Pragmatic use of AI tooling (Cursor, Claude, Copilot) as a core part of the development workflow
+
+Nice to haves:
+
+Experience shipping ML-powered features in a product development context (agile, CI/CD, production monitoring), not just research or offline analysis
+Spatial cross-validation, you know why random CV leaks in geospatial problems
+Uncertainty quantification: quantile regression, conformal prediction
+HPC experience (LUMI, SLURM-based clusters)
+Databricks ML Runtime, AWS RDS/Aurora, or PostGIS experience
+Insurance, catastrophe modeling, or climate risk vocabulary
+Tabular deep learning (TabNet, FT-Transformer) as comparison baselines
+Tech stack: Python, gradient boosting libraries, experiment tracking tooling, cloud compute (GPU)
+
+Application Process
+
+Recruiter screening
+Hiring manager interview
+Technical task
+Technical panel interview
+Final interview
+
+Working at ICEYE
+
+At ICEYE, you'll join a diverse and highly engaged team united by the ambition to make the impossible possible. As a global scale-up, we combine speed and ambition with the opportunity to take real ownership from day one. Your growth, wellbeing, and success are a priority, with continuous professional development, training opportunities, and a culture where collaboration is how we win.
+
+How We Work (Our Values)
+
+Make the impossible possible: We set ambitious goals and stay calm under pressure. We bring grit, optimism, and ownership when things get hard, and we keep moving until we find a way.
+
+Be curious: Go deep, ask questions, listen carefully, and think critically. Understand the "why" behind decisions.
+See the big picture: Stay close to what's happening across the company so you can make better decisions. Consider how your work affects others.
+Drive effective teamwork: Create psychological safety, invite different perspectives, and build inclusive teams. There are no bad questions.
+Act as one team: We win together. We match tasks to the right owner and stay agile as priorities shift.
+Have fun: What we do matters—and it should be enjoyable. Celebrate progress, take pride in results, and share the wins.
+
+Benefits
+
+Our benefits are designed to support your health and wellbeing, at work and beyond. We keep improving them based on employee feedback, and offerings vary by location. Talent Acquisition will confirm what applies for this role and location during the process.
+
+Our Commitment to Diversity, Equity, and Inclusion
+
+We want ICEYE to be a place where people can be themselves and do great work. Different backgrounds and perspectives make us stronger, which is why we work to create an environment where people feel included, respected, and able to speak up. Whatever your background, we want you to bring your authentic self to the table.
+
+We're committed to fair, inclusive hiring and equal opportunity. Everyone is welcome to apply. If you need any adjustments or support during the recruitment process, tell us—we'll do our best to help.
+
+Apply now to start your ICEYE journey, and help us continue to make the impossible possible together. Read more about ICEYE and working with us at iceye.com.
