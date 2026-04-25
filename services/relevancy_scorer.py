@@ -1,5 +1,10 @@
 """
-Relevancy Scorer — CV ⇄ Job Description matching via Claude Sonnet 4.6 on Vertex.
+Relevancy Scorer — CV ⇄ Job Description matching via Claude Sonnet 4.6.
+
+Supports two backends:
+
+* ``vertex``     — Claude Sonnet 4.6 served on Google Vertex AI.
+* ``claude_api`` — Anthropic's hosted Claude API (requires an API key).
 
 Uses prompt engineering to coerce Claude into returning a strict JSON payload
 containing a float score in [0.0, 1.0] plus a short rationale and skill
@@ -16,6 +21,11 @@ from dataclasses import dataclass, field, asdict
 from typing import Dict, List, Optional
 
 logger = logging.getLogger(__name__)
+
+
+PROVIDER_VERTEX = "vertex"
+PROVIDER_CLAUDE_API = "claude_api"
+SUPPORTED_PROVIDERS = (PROVIDER_VERTEX, PROVIDER_CLAUDE_API)
 
 
 # ──────────────────────────────────────────────
@@ -75,10 +85,18 @@ USER_PROMPT_TEMPLATE = (
 # Scorer
 # ──────────────────────────────────────────────
 class RelevancyScorer:
-    """CV ⇄ Job relevancy scorer backed by Claude Sonnet 4.6 on Vertex AI.
+    """CV ⇄ Job relevancy scorer backed by Claude Sonnet 4.6.
+
+    Two backends are supported via the ``provider`` argument:
+
+    * ``"vertex"`` (default) — calls Claude Sonnet 4.6 on Google Vertex AI.
+      Reads ``VERTEX_PROJECT_ID`` / ``VERTEX_REGION`` env vars by default.
+    * ``"claude_api"`` — calls Anthropic's hosted Claude API. Requires an
+      API key (passed in via ``api_key=`` or the ``ANTHROPIC_API_KEY`` env var).
 
     Example:
-        scorer = RelevancyScorer()
+        scorer = RelevancyScorer()  # Vertex
+        scorer = RelevancyScorer(provider="claude_api", api_key="sk-ant-...")
         result = scorer.score(cv_text=clean_cv, job_description=jd_text)
         print(result.score, result.verdict)
     """
@@ -89,15 +107,25 @@ class RelevancyScorer:
 
     def __init__(
         self,
-        model: str = DEFAULT_MODEL,
+        model: Optional[str] = None,
         region: Optional[str] = None,
         project_id: Optional[str] = None,
         max_tokens: int = DEFAULT_MAX_TOKENS,
         temperature: float = 0.0,
+        provider: str = PROVIDER_VERTEX,
+        api_key: Optional[str] = None,
     ):
-        self.model = model
+        provider = (provider or PROVIDER_VERTEX).lower()
+        if provider not in SUPPORTED_PROVIDERS:
+            raise ValueError(
+                f"Unsupported provider {provider!r}. "
+                f"Expected one of: {', '.join(SUPPORTED_PROVIDERS)}."
+            )
+        self.provider = provider
+        self.model = model or self.DEFAULT_MODEL
         self.region = region or os.getenv("VERTEX_REGION", self.DEFAULT_REGION)
         self.project_id = project_id or os.getenv("VERTEX_PROJECT_ID") or os.getenv("GOOGLE_CLOUD_PROJECT")
+        self.api_key = api_key or os.getenv("ANTHROPIC_API_KEY")
         self.max_tokens = max_tokens
         self.temperature = temperature
         self._client = None
@@ -105,23 +133,46 @@ class RelevancyScorer:
     # ── Lazy client init ────────────────────────────────────────
     @property
     def client(self):
-        if self._client is None:
+        if self._client is not None:
+            return self._client
+
+        if self.provider == PROVIDER_CLAUDE_API:
             try:
-                from anthropic import AnthropicVertex
+                from anthropic import Anthropic
             except ImportError as exc:  # pragma: no cover
                 raise ImportError(
-                    "anthropic[vertex] is required. Install with "
-                    "`uv add 'anthropic[vertex]'`."
+                    "The `anthropic` package is required for the Claude API "
+                    "provider. Install with `uv add anthropic`."
                 ) from exc
 
-            kwargs = {"region": self.region}
-            if self.project_id:
-                kwargs["project_id"] = self.project_id
-            self._client = AnthropicVertex(**kwargs)
+            if not self.api_key:
+                raise RuntimeError(
+                    "Claude API provider selected but no API key was provided. "
+                    "Set ANTHROPIC_API_KEY or pass `api_key=...` to the scorer."
+                )
+            self._client = Anthropic(api_key=self.api_key)
             logger.info(
-                "Initialized AnthropicVertex client (model=%s, region=%s, project=%s)",
-                self.model, self.region, self.project_id,
+                "Initialized Anthropic (Claude API) client (model=%s)", self.model,
             )
+            return self._client
+
+        # Default: Vertex AI
+        try:
+            from anthropic import AnthropicVertex
+        except ImportError as exc:  # pragma: no cover
+            raise ImportError(
+                "anthropic[vertex] is required. Install with "
+                "`uv add 'anthropic[vertex]'`."
+            ) from exc
+
+        kwargs = {"region": self.region}
+        if self.project_id:
+            kwargs["project_id"] = self.project_id
+        self._client = AnthropicVertex(**kwargs)
+        logger.info(
+            "Initialized AnthropicVertex client (model=%s, region=%s, project=%s)",
+            self.model, self.region, self.project_id,
+        )
         return self._client
 
     # ── Public API ──────────────────────────────────────────────

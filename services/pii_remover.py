@@ -29,7 +29,7 @@ from dataclasses import dataclass, field
 logger = logging.getLogger(__name__)
 
 
-DEFAULT_AUDIT_LOG_PATH = Path(__file__).resolve().parent / "pii_log.json"
+DEFAULT_AUDIT_LOG_PATH = Path(__file__).resolve().parent.parent / "pii_log.json"
 
 
 # ──────────────────────────────────────────────

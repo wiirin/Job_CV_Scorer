@@ -3,42 +3,85 @@
 An AI-powered resume screening tool that ranks candidate CVs against job
 descriptions using **Claude Sonnet 4.6 on Google Vertex AI**, with a
 built-in **GDPR-compliant PII removal layer** that strips personal data
-from every CV *before* it is sent to the model.
+from every CV *before* it is sent to the model. PDF CVs are supported
+end-to-end via **PyMuPDF text extraction with a Tesseract OCR fallback**
+for scanned documents.
 
-The project ships as a 3-page Streamlit app:
+The project ships as a 4-page Streamlit app:
 
-| Page                | What it does                                                                                                |
-| ------------------- | ----------------------------------------------------------------------------------------------------------- |
-| **CV Score Rank**   | Loads every JD in `job_description/` and every CV in `cv/`, anonymizes the CVs and ranks them per JD.       |
-| **GDPR Audit Log**  | Displays `pii_log.json` — a full audit trail of every PII entity that was detected and redacted.            |
-| **Job ⇄ CV Score**  | Free-text playground: paste any JD + CV, click *Remove PII*, then *Calculate Score*.                        |
+| Page                  | What it does                                                                                                            |
+| --------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| **CV Score Rank**     | Loads every JD in `job_description/` and every CV in `cv/`, anonymizes the CVs and ranks them per JD.                   |
+| **GDPR Audit Log**    | Displays `pii_log.json` — a full audit trail of every PII entity that was detected and redacted.                        |
+| **Job ⇄ CV Score**    | Free-text playground: paste any JD + CV, click *Remove PII*, then *Calculate Score*.                                    |
+| **PDF CV Analysis**   | Upload a PDF CV → extract text (OCR fallback) → remove PII → score against your pasted job description in one click.    |
 
 ---
 
 ## Architecture
 
 ```
-┌──────────────┐     ┌──────────────────┐     ┌─────────────────────┐
-│  Raw CV /    │ ──▶ │ PIIRemovalService │ ──▶ │  RelevancyScorer    │ ──▶ score (0.0–1.0)
-│  Job Desc.   │     │ (spaCy NER +      │     │  (Claude Sonnet 4.6 │
-└──────────────┘     │  regex patterns)  │     │   on Vertex AI)     │
-                     └────────┬──────────┘     └─────────────────────┘
-                              │
-                              ▼
-                      pii_log.json
-                    (GDPR audit trail)
+┌──────────────┐    ┌────────────────────┐    ┌───────────────────┐    ┌──────────────────────┐
+│  PDF / TXT   │ ─▶ │ PDFTextExtractor   │ ─▶ │ PIIRemovalService │ ─▶ │  RelevancyScorer     │ ─▶ score (0.0–1.0)
+│  CV input    │    │ (PyMuPDF + OCR     │    │ (spaCy NER +      │    │  (Claude Sonnet 4.6  │
+└──────────────┘    │  via Tesseract)    │    │  regex patterns)  │    │   on Vertex AI)      │
+                    └────────────────────┘    └─────────┬─────────┘    └──────────────────────┘
+                                                        │
+                                                        ▼
+                                                pii_log.json
+                                              (GDPR audit trail)
 ```
 
-### Key files
+### Repository layout
 
-| File                    | Purpose                                                                  |
-| ----------------------- | ------------------------------------------------------------------------ |
-| `pii_remover.py`        | `PIIRemovalService` — spaCy + regex PII detection, writes `pii_log.json`.|
-| `relevancy_scorer.py`   | `RelevancyScorer` — prompt-engineered JSON-only Claude call on Vertex.   |
-| `app.py`                | Streamlit UI (3 pages).                                                  |
-| `cv/`                   | Sample CVs (plain text).                                                 |
-| `job_description/`      | Sample job descriptions (plain text).                                    |
-| `pii_log.json`          | Persistent audit log, (re)generated on every ranking run.                |
+```
+cv-checker/
+├── app.py                       # Streamlit UI — 4 pages, no business logic
+├── services/
+│   ├── __init__.py              # Re-exports the public API
+│   ├── pii_remover.py           # PIIRemovalService (spaCy NER + regex)
+│   ├── relevancy_scorer.py      # RelevancyScorer (Claude Sonnet 4.6 / Vertex)
+│   └── ocr_pdf_to_text.py       # PDFTextExtractor (PyMuPDF + Tesseract OCR)
+├── cv/                          # Sample CVs (plain text)
+├── job_description/             # Sample job descriptions (plain text)
+├── pii_log.json                 # Persistent GDPR audit log
+├── pyproject.toml               # uv / pip deps
+└── README.md
+```
+
+### Key modules
+
+| Module                              | Purpose                                                                                                |
+| ----------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| `services.pii_remover`              | `PIIRemovalService` — spaCy + regex PII detection, writes `pii_log.json`.                              |
+| `services.relevancy_scorer`         | `RelevancyScorer` — prompt-engineered JSON-only Claude call on Vertex.                                 |
+| `services.ocr_pdf_to_text`          | `PDFTextExtractor` / `extract_text_from_pdf()` — text-layer first, OCR fallback for scanned pages.     |
+| `app.py`                            | Streamlit UI (4 pages). Imports everything from `services`.                                            |
+
+### How PDF extraction works
+
+`services.ocr_pdf_to_text.PDFTextExtractor` runs a two-stage pipeline:
+
+1. **Native text layer** — open the PDF with **PyMuPDF** (`fitz`) and pull
+   the embedded text from each page. This is fast, lossless and works
+   for the vast majority of digitally-generated CVs (PDFs exported from
+   Word, Pages, Google Docs, LaTeX, etc.).
+2. **OCR fallback** — for any page whose native text layer is empty or
+   suspiciously short (< 40 chars), the page is rendered to a high-DPI
+   bitmap and passed to **Tesseract OCR** via `pytesseract`. The result
+   is merged back in.
+
+You can also tick **Force OCR** in the sidebar to skip the text layer
+entirely, which is useful for fully-scanned CVs that contain phantom
+"selectable" text (e.g. PDF/A wrappers around scanned images).
+
+> **About `langextract`** — the [google/langextract](https://github.com/google/langextract)
+> library is for **structured information extraction** from text using LLMs
+> (Gemini, OpenAI, Ollama, …). It is *not* an OCR library. The right
+> open-source toolchain for PDF → text is PyMuPDF + Tesseract, which is
+> what we use here. `langextract` would be a great later addition on top
+> of the cleaned text — for example, to extract a structured
+> `{name, skills, experience}` JSON of each candidate.
 
 ### How PII removal works
 
@@ -82,6 +125,9 @@ for demos.
   access to the `claude-sonnet-4-6` model in the Vertex AI Model Garden.
 - The **gcloud CLI** for local credentials:
   <https://cloud.google.com/sdk/docs/install>
+- *(Optional but recommended)* **Tesseract OCR** — only needed if you
+  want to OCR scanned PDFs on the *PDF CV Analysis* page. Text-based
+  PDFs work without it.
 
 Enable the API and Claude model on your project once:
 
@@ -95,6 +141,19 @@ Authenticate your machine so the Anthropic SDK can talk to Vertex:
 
 ```bash
 gcloud auth application-default login
+```
+
+Install the Tesseract binary if you plan to OCR scanned PDFs:
+
+```bash
+# macOS
+brew install tesseract
+
+# Debian / Ubuntu
+sudo apt-get install -y tesseract-ocr
+
+# Windows (PowerShell, with Chocolatey)
+choco install tesseract
 ```
 
 ---
@@ -112,7 +171,8 @@ source .venv/bin/activate           # macOS / Linux
 
 # 3. Install dependencies
 pip install --upgrade pip
-pip install "anthropic[vertex]" streamlit spacy pandas
+pip install "anthropic[vertex]" streamlit spacy pandas \
+            pymupdf pytesseract pillow
 
 # 4. Download the spaCy English model (used by the PII remover)
 python -m spacy download en_core_web_sm
@@ -199,6 +259,26 @@ Paste any job description (left) and CV (right), then:
   using Claude and returns score + verdict + reasoning.
 - **Reset** — clears both boxes.
 
+### 4. PDF CV Analysis (upload + OCR)
+
+The newest page glues the whole pipeline together for real PDFs:
+
+1. **Upload a PDF CV** on the left, **paste a job description** on the right.
+2. Tweak the OCR controls in the sidebar if needed:
+   - **Force OCR on every page** — for fully-scanned CVs that have a
+     bogus/empty text layer.
+   - **OCR render DPI** — 300 is a good default; bump to 400–600 for
+     hard-to-read scans.
+   - **OCR language(s)** — Tesseract language codes, e.g. `eng`,
+     `eng+fra`, `eng+tha` (the matching `*.traineddata` must be installed).
+3. Click **📄 Extract & Anonymize** — the app:
+   - extracts the text via PyMuPDF (OCR fallback per page),
+   - removes PII with `PIIRemovalService`,
+   - appends an entry to `pii_log.json`,
+   - shows extraction stats, the anonymized text, and the redaction table.
+4. Click **🎯 Calculate Score** — sends the anonymized text + your JD to
+   Claude on Vertex and renders score, verdict, matched/missing skills.
+
 ---
 
 ## Troubleshooting
@@ -211,6 +291,8 @@ Paste any job description (left) and CV (right), then:
 | `NotFound: model claude-sonnet-4-6` / `404`                                | Your chosen region does not serve this model — try `europe-west1`, `us-east5`, or `us-east1`.                  |
 | Streamlit can't find `app.py`                                              | Make sure you ran `streamlit run app.py` from the project root.                                                |
 | Audit log page is empty                                                    | Visit *CV Score Rank* once, or click *Regenerate from sample CVs* in the sidebar of the audit page.            |
+| PDF page returns "no extractable text" / OCR skipped                       | Install Tesseract (`brew install tesseract` / `apt-get install tesseract-ocr`) **and** tick *Force OCR* if the PDF is scanned. |
+| `ImportError: PyMuPDF is required for PDF text extraction`                 | Run `pip install pymupdf` (or `uv sync` to pick it up from `pyproject.toml`).                                  |
 
 ---
 
