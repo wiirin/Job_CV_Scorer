@@ -9,6 +9,10 @@ documents, and candidates can optionally share a **cover letter** (PDF or
 pasted text) to receive direct, professionally worded writing feedback in
 addition to the CV ⇄ JD score.
 
+<img width="1920" height="938" alt="Screenshot 2026-05-18 at 17 28 32" src="https://github.com/user-attachments/assets/f2a201f2-a2d6-4b6b-a6d9-2495a5a35fde" />
+<img width="1919" height="923" alt="Screenshot 2026-05-18 at 17 28 17" src="https://github.com/user-attachments/assets/8691f8c4-e997-4a6e-a31f-82c41a0762ce" />
+
+
 **Quick Start**
 Run with `uv` (faster, reproducible)
 
