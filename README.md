@@ -9,6 +9,18 @@ documents, and candidates can optionally share a **cover letter** (PDF or
 pasted text) to receive direct, professionally worded writing feedback in
 addition to the CV ⇄ JD score.
 
+**Quick Start**
+Run with `uv` (faster, reproducible)
+
+If you have [uv](https://docs.astral.sh/uv/) installed:
+
+```bash
+cd cv-checker
+uv sync                                  # install exact versions from uv.lock
+uv run python -m spacy download en_core_web_sm
+uv run streamlit run app.py
+```
+
 Two Claude providers are supported out of the box and can be switched from
 the sidebar:
 

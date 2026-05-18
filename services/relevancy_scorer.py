@@ -177,7 +177,12 @@ class RelevancyScorer:
 
     # ── Public API ──────────────────────────────────────────────
     def score(self, cv_text: str, job_description: str) -> RelevancyScore:
-        """Score a CV against a job description and return a RelevancyScore."""
+        """Score a CV against a job description and return a RelevancyScore.
+
+        Only the CV text and the job description are required. The scorer
+        is intentionally independent of any cover letter — cover letter
+        feedback is handled separately by ``CoverLetterAnalyzer``.
+        """
         cv_text = (cv_text or "").strip()
         job_description = (job_description or "").strip()
 

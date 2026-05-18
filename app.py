@@ -555,15 +555,13 @@ def page_pdf() -> None:
         use_container_width=True,
         disabled=uploaded is None,
     )
-    score_clicked = btn2.button(
-        "🎯 Calculate Score",
-        use_container_width=True,
-        disabled=not (ss.pdf_anon is not None and ss.pdf_jd.strip()),
-        help=(
-            "Scores the CV against the JD. If a cover letter is provided, also "
-            "generates writing feedback."
-        ),
-    )
+    # Reserve a slot for "Calculate Score" but render the actual button
+    # AFTER the extract handler below, so its enabled/primary state
+    # reflects ss.pdf_anon being set by an extract action that happens
+    # in the SAME script run. Rendering it here would lock in a stale
+    # disabled state until the next user interaction (e.g. clicking
+    # "Apply" on the Claude provider config).
+    score_btn_slot = btn2.empty()
     if btn3.button("Reset PDF page", use_container_width=True):
         for k in (
             "pdf_extraction",
@@ -641,44 +639,82 @@ def page_pdf() -> None:
                         f"from {cl_extraction.page_count} page(s))."
                     )
 
+    # Render the Calculate Score button now that the extract handler
+    # above has had a chance to update ss.pdf_anon. This ensures the
+    # button becomes enabled in the SAME script run as the extract
+    # action that satisfied its requirements.
+    can_score = ss.pdf_anon is not None and bool(ss.pdf_jd.strip())
+    score_clicked = score_btn_slot.button(
+        "🎯 Calculate Score",
+        type="primary" if can_score else "secondary",
+        use_container_width=True,
+        disabled=not can_score,
+        help=(
+            "Scores the CV against the JD. Only the CV and job description "
+            "are required — the cover letter is optional and only used for "
+            "additional writing feedback."
+        ),
+        key="pdf_score_btn",
+    )
+
     if score_clicked and ss.pdf_anon is not None:
+        # 1) Always score the CV vs JD first. The relevancy scorer only
+        #    requires the CV and the job description — it deliberately
+        #    knows nothing about cover letters, so this path must never
+        #    depend on cover letter state.
         with st.spinner("Scoring CV against job description…"):
             ss.pdf_score = get_scorer().score(
                 cv_text=ss.pdf_anon.anonymized_text,
                 job_description=ss.pdf_jd,
             )
 
-        # Lazy-extract a cover letter PDF the user uploaded after the
-        # initial Extract & Anonymize step (so they don't have to click it
-        # twice just to add a cover letter).
-        if (
-            ss.pdf_cover_mode == "Upload PDF"
-            and cover_uploaded is not None
-            and (
-                not ss.pdf_cover_pdf_text
-                or ss.pdf_cover_filename != cover_uploaded.name
-            )
-        ):
-            extractor = get_pdf_extractor(force_ocr, ocr_dpi, ocr_language.strip() or "eng")
-            try:
-                with st.spinner(f"Extracting cover letter from {cover_uploaded.name}…"):
-                    cl_extraction = extractor.extract(cover_uploaded.getvalue())
-            except Exception as exc:
-                st.warning(f"Cover letter extraction failed: {exc}")
-            else:
-                ss.pdf_cover_pdf_text = cl_extraction.text
-                ss.pdf_cover_filename = cover_uploaded.name
-
-        cover_letter_text = _current_cover_letter_text(ss)
-        if cover_letter_text.strip():
-            with st.spinner("Reading your cover letter and preparing feedback…"):
-                ss.pdf_cover_feedback = get_cover_letter_analyzer().analyze(
-                    cover_letter=cover_letter_text,
-                    cv_text=ss.pdf_anon.anonymized_text,
-                    job_description=ss.pdf_jd,
+        # 2) Cover letter feedback is fully optional. Wrap everything
+        #    below in a defensive try/except so any failure here can
+        #    never prevent the relevancy score from being displayed.
+        try:
+            # Lazy-extract a cover letter PDF the user uploaded after the
+            # initial Extract & Anonymize step (so they don't have to
+            # click extract twice just to add a cover letter).
+            if (
+                ss.pdf_cover_mode == "Upload PDF"
+                and cover_uploaded is not None
+                and (
+                    not ss.pdf_cover_pdf_text
+                    or ss.pdf_cover_filename != cover_uploaded.name
                 )
-        else:
+            ):
+                extractor = get_pdf_extractor(
+                    force_ocr, ocr_dpi, ocr_language.strip() or "eng"
+                )
+                try:
+                    with st.spinner(
+                        f"Extracting cover letter from {cover_uploaded.name}…"
+                    ):
+                        cl_extraction = extractor.extract(cover_uploaded.getvalue())
+                except Exception as exc:
+                    st.warning(f"Cover letter extraction failed: {exc}")
+                else:
+                    ss.pdf_cover_pdf_text = cl_extraction.text
+                    ss.pdf_cover_filename = cover_uploaded.name
+
+            cover_letter_text = _current_cover_letter_text(ss)
+            if cover_letter_text.strip():
+                with st.spinner(
+                    "Reading your cover letter and preparing feedback…"
+                ):
+                    ss.pdf_cover_feedback = get_cover_letter_analyzer().analyze(
+                        cover_letter=cover_letter_text,
+                        cv_text=ss.pdf_anon.anonymized_text,
+                        job_description=ss.pdf_jd,
+                    )
+            else:
+                ss.pdf_cover_feedback = None
+        except Exception as exc:
             ss.pdf_cover_feedback = None
+            st.warning(
+                "Cover letter feedback could not be generated, but the "
+                f"relevancy score below is still valid. Details: {exc}"
+            )
 
     # ── Output panels ─────────────────────────────────
     extraction: PDFExtractionResult | None = ss.pdf_extraction
@@ -770,8 +806,10 @@ def _render_cover_letter_inputs(ss):
     """
     st.subheader("3. Cover letter (optional)")
     st.caption(
-        "Share your cover letter to receive constructive writing feedback "
-        "in addition to the CV ⇄ JD score. Skip this if you don't have one."
+        "Optional — share your cover letter to also receive constructive "
+        "writing feedback. The CV ⇄ JD relevancy score works on its own "
+        "and does not require a cover letter; leave this on **Skip** if "
+        "you don't have one."
     )
 
     mode_options = ["Skip", "Paste text", "Upload PDF"]
